@@ -12,7 +12,7 @@ def ecdf(data):
     n = len(data) #retourne 5
 
     # x-data for the ECDF: x
-    x = np.sort(data) #Return a sorted copy of an array.
+    x = np.sort(data) #Return a sorted copy of an array. Tri les données
 
     # y-data for the ECDF: y
     y = np.arange( 1, n+1) / n #the end value in np.arange() is not inclusive 
