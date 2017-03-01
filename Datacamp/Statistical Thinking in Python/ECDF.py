@@ -1,3 +1,5 @@
+#Empirical cumulative distribution function (ECDF)
+
 #Computing the ECDF 
 
 #data = <class 'sklearn.datasets.base.Bunch'>
