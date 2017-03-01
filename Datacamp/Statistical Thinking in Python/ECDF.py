@@ -20,7 +20,7 @@ def ecdf(data):
     return x, y
   
   
-  
+# 1ere utilisation
 # Compute ECDF for versicolor data: x_vers, y_vers
 x_vers, y_vers = ecdf(versicolor_petal_length)
 
@@ -31,6 +31,31 @@ _ = plt.plot(x_vers, y_vers, marker='.', linestyle='none')
 plt.margins(0.02)
 
 # Label the axes
+_ = plt.xlabel('petal length (cm)')
+_ = plt.ylabel('ECDF')
+
+# Display the plot
+plt.show()
+
+
+# 2e utilisation de la fonction pour compiler plusieurs courbes de fonction cumulative sur un même graphique
+
+# Compute ECDFs
+x_set, y_set   = ecdf(setosa_petal_length)
+x_vers, y_vers = ecdf(versicolor_petal_length)
+x_virg, y_virg = ecdf(virginica_petal_length)
+
+
+# Plot all ECDFs on the same plot
+plt.plot(x_set, y_set,marker=".",linestyle="none")
+plt.plot(x_vers, y_vers,marker=".",linestyle="none")
+plt.plot(x_virg, y_virg,marker=".",linestyle="none")
+
+# Make nice margins
+plt.margins(0.02)
+
+# Annotate the plot
+plt.legend(('setosa', 'versicolor', 'virginica'), loc='lower right')
 _ = plt.xlabel('petal length (cm)')
 _ = plt.ylabel('ECDF')
 
