@@ -12,10 +12,10 @@ def ecdf(data):
     n = len(data) #retourne 5
 
     # x-data for the ECDF: x
-    x = np.sort(data)
+    x = np.sort(data) #Return a sorted copy of an array.
 
     # y-data for the ECDF: y
-    y = np.arange( 1, n+1) / n #the end value in np.arange() is not inclusive
+    y = np.arange( 1, n+1) / n #the end value in np.arange() is not inclusive # le résultat final ira de 0.2 à 1
 
     return x, y
   
