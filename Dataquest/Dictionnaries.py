@@ -79,3 +79,20 @@ for planet_name in planet_names:
         long_names.append(planet_name)
     else:
         short_names.append(planet_name)
+        
+        
+#Count element of a List and store the result in a dictionnary
+#Create an empty dictionary named pantry_counts.
+#Loop through each item in pantry.
+#If the item appears in pantry_counts, add 1 to the value in pantry_counts for the item's key.
+#Otherwise, add the item to pantry_counts as a key, with the value 1.
+#When finished, each item in pantry will have its own key in pantry_counts, and its value will be the number of times the item appears in pantry.
+
+pantry = ["apple", "orange", "grape", "apple", "orange", "apple", "tomato", "potato", "grape"]
+pantry_counts = {}
+
+for pantry_elem in pantry:
+    if pantry_elem in pantry_counts:
+        pantry_counts[pantry_elem] = pantry_counts[pantry_elem] + 1
+    else:
+        pantry_counts[pantry_elem] = 1
