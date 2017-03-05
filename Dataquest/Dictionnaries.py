@@ -63,3 +63,19 @@ students = {
 }
 
 "Tom" in students would return True, and "Sue" in students would return in False.
+
+
+
+#Append any names in planet_names that are longer than 5 characters to long_names.
+#Otherwise, append the names to short_names. To accomplish this:
+
+
+planet_names = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Neptune", "Uranus"]
+short_names = []
+long_names = []
+
+for planet_name in planet_names:
+    if len(planet_name) > 5:
+        long_names.append(planet_name)
+    else:
+        short_names.append(planet_name)
