@@ -33,6 +33,7 @@ def clean_text(text_string):
     return(cleaned_string)
 cleaned_story = clean_text(story_string)
 
+# en utilisant une boucle :
 
 #Modify the clean_text() function below in the following ways:
 #Add another argument called special_characters.
