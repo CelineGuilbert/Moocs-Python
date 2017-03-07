@@ -62,3 +62,28 @@ def clean_text(text_string, special_characters):
 
 cleaned_story = clean_text(story_string, clean_chars)
 print(cleaned_story)
+
+
+#let's tokenize it from a string into a list
+#A whitespace character (\" \") separates each word in cleaned_story. 
+#We can use the string method split() to split cleaned_story on a single whitespace character and return a list of tokens.
+#The tokenize() function focuses on converting a string to a list of tokens.
+#The clean_text() function focuses on cleaning a string.
+
+
+def clean_text(text_string, special_characters):
+    cleaned_string = text_string
+    for string in special_characters:
+        cleaned_string = cleaned_string.replace(string, "")
+    cleaned_string = cleaned_string.lower()
+    return(cleaned_string)
+
+clean_chars = [",", ".", "'", ";", "\n"]
+cleaned_story = clean_text(story_string, clean_chars)
+def tokenize(text_string, special_characters):
+    cleaned_story = clean_text(text_string, special_characters)
+    story_tokens = cleaned_story.split(" ")
+    return(story_tokens)
+
+tokenized_story = tokenize(story_string, clean_chars)
+print(tokenized_story[0:10])
