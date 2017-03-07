@@ -32,3 +32,39 @@ for ts in tokenized_story:
         misspelled_words.append(ts)
 print(misspelled_words)
 
+
+# using Clean
+def tokenize(text_string, special_characters, clean=False):
+    # If `clean` is `True`.
+    if clean:
+        cleaned_story = clean_text(text_string, special_characters)
+        story_tokens = cleaned_story.split(" ")
+        return(story_tokens)
+    # If `clean` not equal to `True`, no cleaning.
+    story_tokens = text_string.split(" ")
+    return(story_tokens)
+
+clean_chars = [",", ".", "'", ";", "\n"]
+tokenized_story = tokenize(story_string, clean_chars, True)
+tokenized_vocabulary = tokenize(vocabulary, clean_chars)
+
+for ts in tokenized_story:
+    if ts not in tokenized_vocabulary:
+        misspelled_words.append(ts)
+        
+## using Clean en parametre
+def tokenize(text_string, special_characters, clean=False):
+    if clean:
+        cleaned_story = clean_text(text_string, special_characters)
+        story_tokens = cleaned_story.split(" ")
+        return(story_tokens)
+    story_tokens = text_string.split(" ")
+    return(story_tokens)
+    
+clean_chars = [",", ".", "'", ";", "\n"]
+tokenized_story = tokenize(story_string,clean_chars,True)
+tokenized_vocabulary = tokenize(vocabulary,clean_chars)
+               
+for ts in tokenized_vocabulary:
+    if ts not in tokenized_vocabulary:
+        misspelled_words.append(ts)
