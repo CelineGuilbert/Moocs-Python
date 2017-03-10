@@ -79,7 +79,7 @@ for row in rows:
     final_data.append(text)
 print(final_data)
         
-        
+        # Append Method : To add values to a list object, use the list.append() method. 
         
 # 7 : Accessing Elements In A List Of Lists
 
