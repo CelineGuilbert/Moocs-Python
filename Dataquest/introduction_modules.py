@@ -58,3 +58,21 @@ for item in nfl:
     if item[2] == "New England Patriots":
             patriots_wins = patriots_wins + 1
             #patriots_wins += 1
+
+          
+
+#Your function should output the number of victories the team won in the given year (as an integer).
+#Use the and operator to combine Booleans. For each row in the data set, check whether the desired team won, 
+#and whether the game took place during the correct year.
+#Use your function to assign the number of games the "Cleveland Browns" won in "2010" to browns_2010_wins.
+#Use your function to assign the number of games the "Philadelphia Eagles" won in "2011" to eagles_2011_wins.          
+          
+def nfl_wins_in_a_year(team, year):
+    count = 0
+    for row in nfl:
+        if row[2] == team and row[0] == year:
+            count = count + 1
+    return count
+
+browns_2010_wins = nfl_wins_in_a_year("Cleveland Browns", "2010")
+eagles_2011_wins = nfl_wins_in_a_year("Philadelphia Eagles", "2011")
