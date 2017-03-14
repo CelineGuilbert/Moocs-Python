@@ -92,4 +92,5 @@ def birth_day(data,day):
     return(count_birth)
 
 bd = birth_day(restrict_list, 6)
-print(bd)
+# trier le dictionnaire BD par la clé, ici l'année
+sorted(bd.items(), key=lambda t: t[0])
