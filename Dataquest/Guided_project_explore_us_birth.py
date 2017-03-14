@@ -66,3 +66,12 @@ cdc_dom_births = calc_counts(final_list, 2)
 cdc_dow_births = calc_counts(final_list, 3)
 
 
+# Créer une fonction pour calculer le min et le max de chaque dictionnaire passé
+def calc_dict(data):
+    min_value=min(data.values())
+    max_value=max(data.values())
+    serie = (min_value,max_value)
+    return(serie)
+    
+dict1 = calc_dict(cdc_year_births)
+print(dict1)
