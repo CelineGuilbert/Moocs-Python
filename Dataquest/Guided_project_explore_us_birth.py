@@ -75,3 +75,21 @@ def calc_dict(data):
     
 dict1 = calc_dict(cdc_year_births)
 print(dict1)
+
+
+# Compter le nb de naissance le samedi par année
+
+def birth_day(data,day):
+    count_birth={}
+    for row in data:
+        if int(row[3]) == day:
+                year = row[0]
+                birth = int(row[4])
+                if year in count_birth:
+                    count_birth[year] = count_birth[year] + birth
+                else:
+                    count_birth[year] = birth
+    return(count_birth)
+
+bd = birth_day(restrict_list, 6)
+print(bd)
