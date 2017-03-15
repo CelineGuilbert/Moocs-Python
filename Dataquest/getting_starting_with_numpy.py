@@ -103,3 +103,35 @@ canada_alcohol = canada_alcohol.astype(float)
 total_canadian_drinking = canada_alcohol.sum()
 
 
+##Calculating Consumption For Each Country
+#Now that we know how to calculate the average consumption of all types of alcohol for a single country and year, we can scale up the process and make the same calculation for all countries in a given year. Here's a rough process:
+
+#Create an empty dictionary called totals.
+#Select only the rows in world_alcohol that match a given year. Assign the result to year.
+#Loop through a list of countries. For each country:
+#Select only the rows from year that match the given country.
+#Assign the result to country_consumption.
+#Extract the fifth column from country_consumption.
+#Replace any empty string values in the column with the string 0.
+#Convert the column to the float data type.
+#Find the sum of the column.
+#Add the sum to the totals dictionary, with the country name as the key.
+#After the code executes, you'll have a dictionary containing all of the country names as keys, with the associated alcohol consumption totals as the values.
+
+
+totals = {}
+is_year = world_alcohol[:,0] == "1989"
+year = world_alcohol[is_year,:]
+
+for country in countries:
+    is_country = year[:,2] == country
+    country_consumption = year[is_country,:]
+    alcohol_column = country_consumption[:,4]
+    is_empty = alcohol_column == ''
+    alcohol_column[is_empty] = "0"
+    alcohol_column = alcohol_column.astype(float)
+    totals[country] = alcohol_column.sum()
+    
+    
+
+
