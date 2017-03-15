@@ -1,3 +1,17 @@
+#NumPy is much easier to work with than lists of lists, because:
+
+#It's easy to perform computations on data.
+#Data indexing and slicing is faster and easier.
+#We can convert data types quickly.
+
+
+#Overall, NumPy makes working with data in Python much more efficient. It's widely used for this reason, especially for machine learning.
+
+#You may have noticed some limitations with NumPy as you worked through the past two missions, though. For example:
+    #All of the items in an array must have the same data type. For many datasets, this can make arrays cumbersome to work with.
+    #Columns and rows must be referred to by number, which gets confusing when you go back and forth from column name to column number.
+
+
 import csv
 f = open("world_alcohol.csv")
 reader = csv.reader(f)
