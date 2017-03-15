@@ -81,3 +81,25 @@ world_alcohol[:,3][world_alcohol[:,3] == 'Wine'] = 'Grog'
 vector = numpy.array(["1", "2", "3"])
 vector = vector.astype(float)
 
+
+#Calculate Mean et Sum, Warning : only with float array
+
+total_alcohol = alcohol_consumption.sum()
+average_alcohol = alcohol_consumption.mean()
+
+
+#Create a matrix called canada_1986 that only contains the rows in world_alcohol where the first column is the string 1986 
+#and the third column is the string Canada.
+#Extract the fifth column of canada_1986, replace any empty strings ('') with the string 0, 
+#and convert the column to the float data type. Assign the result to canada_alcohol.
+#Compute the sum of canada_alcohol. Assign the result to total_canadian_drinking
+
+is_canada_1986 = (world_alcohol[:,2] == "Canada") & (world_alcohol[:,0] == '1986')
+canada_1986 = world_alcohol[is_canada_1986,:]
+canada_alcohol = canada_1986[:,4]
+empty_strings = canada_alcohol == ''
+canada_alcohol[empty_strings] = "0"
+canada_alcohol = canada_alcohol.astype(float)
+total_canadian_drinking = canada_alcohol.sum()
+
+
