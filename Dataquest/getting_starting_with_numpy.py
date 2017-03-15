@@ -133,5 +133,26 @@ for country in countries:
     totals[country] = alcohol_column.sum()
     
     
+##Finding The Country That Drinks The Most
+#Now that we've computed total alcohol consumption for each country in 1989, we can loop through the totals dictionary to find the country with the highest value.
+
+#The process we've outlined below will help you find the key with the highest value in a dictionary:
+
+#Create a variable called highest_value that will keep track of the highest value. Set its value to 0.
+#Create a variable called highest_key that will keep track of the key associated with the highest value. Set its value to None.
+#Loop through each key in the dictionary.
+#If the value associated with the key is greater than highest_value, assign the value to highest_value, and assign the key to highest_key.
+#After the code runs, highest_key will be the key associated with the highest value in the dictionary.
+
+
+highest_value = 0
+highest_key = None
+for country in totals:
+    consumption = totals[country]
+    if highest_value < consumption:
+        highest_value = consumption
+        highest_key = country
+        
+    
 
 
