@@ -88,11 +88,25 @@ parameters = {"lat": 37.78, "lon": -122.41}
 response = requests.get("http://api.open-notify.org/iss-pass.json", params=parameters)
 
 # Get the response data as a Python object.  Verify that it's a dictionary.
-json_data = response.json()
+json_data = response.json() #json_data est un dictionnaire
 print(type(json_data))
 print(json_data)
 first_pass_duration = json_data["response"][0]["duration"]
 
+##Content Type
+#The server sends more than a status code and the data when it generates a response. 
+#It also sends metadata containing information on how it generated the data and how to decode it.
+#This information appears in the response headers. We can access it using the .headers property that responses have.
 
+#The headers will appear as a dictionary. 
+#For now, the content-type within the headers is the most important key. It tells us the format of the response, and how to decode it.
+response = requests.get("http://api.open-notify.org/iss-pass.json", params=parameters)
+content = response.content
 
-
+#OpenNotify has one more API endpoint, astros.json. It tells us how many people are currently in space. 
+#You can find the format of the responses here.
+response = requests.get("http://api.open-notify.org/astros.json")
+json_data = response.json() #json_data est un dictionnaire
+print(type(json_data))
+print(json_data['number'])
+in_space_count = json_data['number']
