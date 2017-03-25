@@ -19,8 +19,6 @@ class Car():
 #properties with the default values we specified. These values are appropriate for our black_honda_accord instance, but we'll have to
 #customize them for our red_toyota_camry instance.
 
-
-
 ## Exercice
 #Create a class called Team.
 #Inside the class, create a name property. Assign the value "Tampa Bay Buccaneers" to this property.
@@ -33,6 +31,7 @@ class Team():
 
 bucs = Team()
 print(bucs.name)
+
 
 
 ## 4. Instance Methods And __init__
@@ -60,9 +59,12 @@ class Team():
         
 giants = Team("New York Giants")        
 
-## 5: The Self Keyword
 
+
+## 5: The Self Keyword
 #Recall that we use the self keyword to add properties to a class.
+
+
 
 ##6: More Instance Methods
 #Methods are very similar to functions, and we define them with the same syntax. 
@@ -75,3 +77,86 @@ class Team():
 ## new method
     def print_name(self):       
         print(self.name)
+
+        
+#Add an instance method called count_total_wins to the definition for the Team class.
+    #The method should take no arguments (except self), and should return the number of games the team won during 
+    #the period this data set describes.
+#Use the instance method to assign the number of wins by the "Denver Broncos" to broncos_wins.
+#Use the instance method to assign the number of wins by the "Kansas City Chiefs" to chiefs_wins.        
+import csv
+
+f = open("nfl.csv", 'r')
+nfl = list(csv.reader(f))
+
+class Team():
+    def __init__(self, name): #propriete de la classe
+        self.name = name
+    
+    def print_name(self):
+        print(self.name)
+
+    def count_total_wins(self):
+        count = 0
+        for row in nfl:
+            if row[2] == self.name:
+                count = count + 1
+        return count
+
+broncos = Team("Denver Broncos")
+broncos_wins = broncos.count_total_wins()
+
+chiefs = Team("Kansas City Chiefs")
+chiefs_wins = chiefs.count_total_wins()
+
+
+## 7: Adding To The Init Function
+#On the previous screen, we loaded the nfl variable for you outside of the Team class. 
+#However, this approach isn't ideal. The purpose of classes is to organize our code, and a big part of organizing code is abstraction.
+
+import csv
+class Team():
+    def __init__(self, name):
+        self.name = name
+        f = open("nfl.csv", 'r')
+        csvreader = csv.reader(f)
+        self.nfl = list(csvreader)
+      
+    def count_total_wins(self):
+        count = 0
+        for row in self.nfl:
+            if row[2] == self.name:
+                count = count + 1
+        return count
+ 
+Jaguar = Team('Jacksonville Jaguars')
+jaguars_wins = Jaguar.count_total_wins()
+
+
+
+##8: Wins In A Year
+
+import csv
+class Team():
+    def __init__(self, name, year):
+        self.name = name
+        self.year = year
+        f = open("nfl.csv", 'r')
+        csvreader = csv.reader(f)
+        self.nfl = list(csvreader)
+
+    def count_total_wins(self):
+        count = 0
+        for row in self.nfl:
+            if row[2] == self.name:
+                count = count + 1
+        return count
+    
+    def count_total_wins_by_year(self):
+        count_y = 0
+        for row in self.nfl:
+            if row[2] == self.name and row[0] == self.year:
+                count_y=count_y+1
+        return count_y
+sf = Team("San Francisco 49ers","2013")
+niners_wins_2013=sf.count_total_wins_by_year()
