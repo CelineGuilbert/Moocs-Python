@@ -61,3 +61,48 @@ except Exception as exc:
     print(type(exc)) ##<class 'ValueError'>
     print(str(exc)) ##invalid literal for int() with base 10: ''
 #In the example above, we use the as statement to assign the instance of the Exception class to the variable exc
+
+## The PASS KEYWORD
+#That's because any Python statement that ends in a colon (:) needs to have an indented body below it.
+#Instead, we can use the pass keyword to avoid generating an error:
+try:
+    int('')
+except Exception:
+    pass
+
+
+converted_years = []
+for year in birth_years: #birth_years is a list with only one column
+    try:
+        year = int(year)
+    except Exception:
+        pass
+    converted_years.append(year)
+
+    
+#Loop through each row in legislators.
+    #Parse the birth year from the birthday column.
+    #Convert the birth year to an integer, and assign it to birth_year.
+    #Wrap this code in a try/except block.
+        #If there's an exception, assign 0 to birth_year.
+    #Append birth_year to the row with the append() method.
+#When finished, legislators should have an extra column for birth year.    
+for item in legislators:
+    birthday = item[2].split("-")[0]
+    try:
+        birth_year = int(birthday)
+    except Exception:
+        birth_year = 0
+    item.append(birth_year)
+    
+## Instead of replace missing year by 0, replace by the last row's value
+#Earlier, we replaced missing values with a fixed value M. 
+#This time, because the values generally appear in chronological order, we can loop through each year and replace any 0 values with
+#the values from the previous rows.
+
+last_value = 1
+for item in legislators:
+    if item[7] == 0: #item[7] = year, do previously
+        item[7] = last_value
+    else:
+        last_value = item[7]
