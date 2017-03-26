@@ -48,5 +48,35 @@ for row in posts:
         of_reddit_count += 1
         
 ##7: Using Square Brackets To Match Multiple Characters
-    
-    
+#For example, the regex "[bcr]at" would match the substrings "bat", "cat", and "rat", but nothing else
+import re
+
+of_reddit_count = 0
+for row in posts:
+    if re.search("of [Rr]eddit", row[0]) is not None:
+        of_reddit_count += 1
+
+##8: Escaping Special Characters
+#Our data set contains a lot of posts that use the [Serious] tag
+#We'd like to search through our data set to see how many posts have this tag, but the regex "[Serious]" doesn't do what we need.
+#To deal with this sort of problem, we need to escape special characters. In regular expressions, escaping a character means indicating
+#that you don't want the character to do anything special, and that the interpreter should treat it just like any other character. 
+#We use the backslash ("\") to escape characters in a regex.
+
+import re
+
+serious_count = 0
+for post in posts:
+    if re.search("\[Serious\]",post[0]) is not None:
+        serious_count += 1
+        
+#Some people tag serious posts as "[Serious]", and others as "[serious]"
+import re
+
+serious_count = 0
+for row in posts:
+    if re.search("\[[sS]erious\]", row[0]) is not None:
+        serious_count += 1
+        
+        
+## 10: Adding More Complexity To Your Regular Expression
