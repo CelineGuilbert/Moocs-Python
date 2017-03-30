@@ -126,7 +126,11 @@ for row in posts:
   row[0]= re.sub("[\[\(][Ss]erious[\]\)]",'[Serious]', row[0])
   posts_new.append(row)
   
-
+# posts= ['If The Lord of the Rings had a Scooby Doo ending, who would Sauron really be?',
+#'3576',
+#'1422318567.0',
+#'0',
+#'2690']
 
 ##13: Matching Years With Regular Expressions
 #We've loaded a number of strings into the strings variable for you.
@@ -147,6 +151,7 @@ for string in strings:
     if re.search("[1-2][0-9]{3}", string) is not None:
         year_strings.append(string)
 #retourne : ['War of 1812', 'Happy New Year 2016!']        
+#strings = ['War of 1812', 'There are 5280 feet to a mile', 'Happy New Year 2016!']
         
 ###15: Challenge: Extracting All Years   
 #Finally let's extract years from a string. The re module contains a findall() function that returns a list of substrings matching 
@@ -155,3 +160,4 @@ import re
 
 years = re.findall("[1-2][0-9]{3}" , years_string)
 # retourne : years = ['2015', '2016']
+#years_string = '2015 was a good year, but 2016 will be better!'
