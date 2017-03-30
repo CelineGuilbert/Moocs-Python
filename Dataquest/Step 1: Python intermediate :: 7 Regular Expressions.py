@@ -80,3 +80,78 @@ for row in posts:
         
         
 ## 10: Adding More Complexity To Your Regular Expression
+#In our data set, some users have tagged their posts with "(Serious)" or "(serious)", including the parentheses. 
+#Therefore, we should account for both square brackets and parentheses. 
+#We can do this by using square bracket notation, and escaping the "[", "]", "(", and ")" characters with the backslash.
+import re
+
+serious_count = 0
+for row in posts:
+    if re.search("[\[\(][Ss]erious[\]\)]", row[0]) is not None:
+        serious_count += 1
+ 
+
+ ## 11: Combining Multiple Regular Expressions       
+#To combine regular expressions, we use the "|" character. For example, "cat|dog" would match "catfish" and "hotdog",
+#because both of these strings match either "cat" or "dog". Similarly, we can combine our regular expressions for the serious
+#tags with the "|" operator to match all titles that either begin or end with the tag.
+
+import re
+
+serious_start_count = 0
+serious_end_count = 0
+serious_count_final = 0
+
+for row in posts:
+    if re.search("^[\[\(][Ss]erious[\]\)]", row[0]) is not None: #commence par
+        serious_start_count += 1
+    if re.search("[\[\(][Ss]erious[\]\)]$", row[0]) is not None: #fini par
+        serious_end_count += 1
+    if re.search("^[\[\(][Ss]erious[\]\)]|[\[\(][Ss]erious[\]\)]$", row[0]) is not None: #combine les deux REGEX
+        serious_count_final += 1
+        
+##12: Using Regular Expressions To Substitute Strings     
+#If we were to call re.sub("yo", "hello", "yo world"), the function will replace the "yo" in "yo world" with "hello", 
+#producing the result "hello world". If it doesn't find a pattern, the re.sub() function simply returns the original string.
+
+#Replace "[serious]", "(Serious)", and "(serious)" with "[Serious]" for all of the titles in posts.
+    #You should only need to use one call to sub(), and one regex.
+    #Recall that the repl argument is an ordinary string. It's not a regex, so you don't need to escape characters like "[".
+    #Append each formatted row to posts_new.       
+
+import re
+posts_new = []
+
+for row in posts:
+  row[0]= re.sub("[\[\(][Ss]erious[\]\)]",'[Serious]', row[0])
+  posts_new.append(row)
+  
+
+
+##13: Matching Years With Regular Expressions
+#We've loaded a number of strings into the strings variable for you.
+#Loop through strings and use re.search() to determine whether each string contains a year between 1000 and 2999.
+#Store every string that contains a year in year_strings. The .append() function will help here.
+import re
+
+year_strings = []
+for string in strings:
+    if re.search("[1-2][0-9][0-9][0-9]", string) is not None:
+        year_strings.append(string)
+        
+## ou plus court : 
+import re
+
+year_strings = []
+for string in strings:
+    if re.search("[1-2][0-9]{3}", string) is not None:
+        year_strings.append(string)
+#retourne : ['War of 1812', 'Happy New Year 2016!']        
+        
+###15: Challenge: Extracting All Years   
+#Finally let's extract years from a string. The re module contains a findall() function that returns a list of substrings matching 
+#he regex. re.findall("[a-z]", "abc123") would return ["a", "b", "c"], because those are the substrings that match the regex.        
+import re
+
+years = re.findall("[1-2][0-9]{3}" , years_string)
+# retourne : years = ['2015', '2016']
