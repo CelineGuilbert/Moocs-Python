@@ -1,1 +1,122 @@
+#1. The Time Module
+
+#A Unix timestamp is a floating point value with no explicit mention of day, month, or year. 
+#This value represents the number of seconds that have passed since the "epoch", or the first second of the year 1970
+#To retrieve the current Unix timestamp, we use the time.time() function.
+
+import time
+
+current_time = time.time()
+print(current_time)
+#retourne : 1490306030.2584543
+
+##2: Converting Timestamps
+#We can convert a timestamp to a more human-readable form using the time.gmtime() function. 
+#This function takes a timestamp as an argument, and returns an instance of the struct_time class. 
+#struct_time instances have attributes that represent the current time in other ways.
+
+#Here are some of the attributes:
+
+#tm_year: The year of the timestamp
+#tm_mon: The month of the timestamp (1-12)
+#tm_mday: The day in the month of the timestamp (1-31)
+#tm_hour: The hour of the timestamp (0-23)
+#tm_min: The minute of the timestamp (0-59)
+
+current_time = time.time()
+current_struct_time = time.gmtime()
+  #retourne :time.struct_time(tm_year=2017, tm_mon=3, tm_mday=30, tm_hour=10, tm_min=34, tm_sec=54, tm_wday=3, tm_yday=89, tm_isdst=0)
+current_year = current_struct_time.tm_year
+
+##3. UTC
+#https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior
+#The time module always results in a UTC time
+
+import datetime
+current_datetime = datetime.datetime.now()
+current_year = current_datetime.year
+current_month= current_datetime.month
+print(current_datetime)
+
+#The datetime module offers better support for working extensively with dates. 
+#For example, it's easier to perform arithmetic on them (such as adding days), and to work with different time zones.
+
+#The datetime module has a datetime class that represents points in time. datetime instances appear similar to struct_time instances, 
+#and have the following attributes:
+
+#year
+#month
+#day
+#hour
+#minute
+#second
+#microsecond
+
+# datetime.now() function, which returns a datetime.datetime instance.
+
+import datetime
+current_datetime = datetime.datetime.now()
+current_year = current_datetime.year ##2017
+current_month= current_datetime.month ##3
+print(current_datetime) ##2017-03-30 10:38:52.749242
+
+##4: Timedelta
+
+#Parameters :
+  #weeks
+  #days
+  #hours
+  #minutes
+  #seconds
+  #milliseconds
+  #microseconds
+  
+  
+#Create an instance of the timedelta class that represents one day. Assign this to a new variable diff.
+#Assign the datetime instance for tomorrow to a new variable tomorrow, 
+#and the datetime instance for yesterday to a new variable yesterday.  
+import datetime
+
+today= datetime.datetime.now()
+diff= datetime.timedelta(days=1)
+yesterday = today - diff
+tomorrow = today + diff
+
+##5: Formatting Dates
+#https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior
+
+#Suppose we'd like to output dates in human-readable formats. If we use the print() function to display a datetime object, 
+#the output will look something like 2016-01-06 13:51:25.849719. Instead of displaying the full timestamp down to the microsecond,
+#we can use the datetime.strftime() method to specify how we'd like the string output to be formatted.
+
+#The datetime.datetime.strftime() method takes a format string as its input.
+#A format string contains special indicators, usually preceded by percent characters ("%"),
+#that indicate where certain values should go. For example, suppose we stored a timestamp from March 3, 2010 in the object march3.
+#If we want to format it nicely into the string "Mar 03, 2010", we can write the following code:
+
+#the abbreviated month name ("%b") followed by a space
+#the day of the month ("%d") followed by a comma and space
+#the full year ("%Y").
+
+march3 = datetime.datetime(year = 2010, month = 3, day = 3)
+pretty_march3 = march3.strftime("%b %d, %Y")
+print(pretty_march3)
+
+import datetime
+
+mystery_date_formatted_string = mystery_date.strftime("%I:%M%p on %A %B %d, %Y")
+# retourne : '12:00AM on Thursday December 31, 2015'
+
+##6: Parsing Dates
+#The datetime.datetime.strptime() function allows us to convert a string to a datetime instance:
+#This is useful if we have a date in a string format, and need to convert it to a datetime instance. 
+#The date string (e.g. "Mar 03, 2010")
+#The format string (e.g. "%b %d, %Y")
+
+#march3 = datetime.datetime.strptime("Mar 03, 2010", "%b %d, %Y")
+
+#import datetime
+mystery_date = datetime.datetime.strptime(mystery_date_formatted_string, "%I:%M%p on %A %B %d, %Y")
+ ##mystery_date_formatted_string (<class 'str'>) = '12:00AM on Thursday January 02, 2003'
+ ##mystery_datedatetime (<class 'datetime.datetime'>) =  datetime.datetime(2003, 1, 2, 0, 0)
 
