@@ -93,5 +93,13 @@ rm test2.txt
 
 
 
+###########CHALLENGE
+
+#Display the current directory.
+pwd
+#Display a list of files in the current directory, along with each file's metadata. Use the appropriate flag to display the file
+#permissions, file size, etc.
+ls -l
+#Move all of the files that don't have .csv as the file extension to a new folder called problematic.
 
 
