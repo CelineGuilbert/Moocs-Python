@@ -7,7 +7,7 @@
   #DataFrames (collections of Series objects)
   #Panels (collections of DataFrame objects)
 
-
+#https://github.com/fivethirtyeight/data/tree/master/fandango
 fandango = pd.read_csv('fandango_score_comparison.csv')
 series_film = fandango["FILM"]
 print(series_film[0:5])
@@ -130,6 +130,43 @@ fandango_films.loc[movies]
 
 ##5: Apply() Logic Over The Columns In A Dataframe
   
+import numpy as np
+
+# returns the data types as a Series
+types = fandango_films.dtypes
+# filter data types to just floats, index attributes returns just column names
+float_columns = types[types.values == 'float64'].index
+# use bracket notation to filter columns to just float columns
+float_df = fandango_films[float_columns]
+
+# `x` is a Series object representing a column
+deviations = float_df.apply(lambda x: np.std(x))
+
+print(deviations)
+
+
+double_df = float_df.apply(lambda x: x*2)
+print(double_df.head(1))
+halved_df=float_df.apply(lambda x: x/2)
+print(halved_df.head(1))
+
+
+##7: Apply() Over Dataframe Rows
+
+rt_mt_user = float_df[['RT_user_norm', 'Metacritic_user_nom']]
+rt_mt_deviations = rt_mt_user.apply(lambda x: np.std(x), axis=1)
+print(rt_mt_deviations[0:5])
+rt_mt_means = rt_mt_user.apply(lambda x: np.mean(x), axis=1)
+print(rt_mt_means[0:5])
+
+
+
+
+
+
+
+
+
 
 
 
