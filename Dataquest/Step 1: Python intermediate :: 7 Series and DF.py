@@ -95,4 +95,42 @@ rt_mean=(rt_critics + rt_users)/2
 
 
 
+########################## DATAFRAMES ##########################
+
+##2: Using Integer Indexes To Select Rows
+# First five rows
+fandango[0:5]
+# From row at 140 and higher
+fandango[140:]
+# Just row at index 50
+fandango.iloc[50]
+# Just row at index 45 and 90
+fandango.iloc[[45,90]]
+#Return a dataframe containing just the first and last rows, and assign it to first_last.
+first_last = fandango.iloc[[0,-1]]
+
+##3: Using Custom Indexes
+fandango = pd.read_csv('fandango_score_comparison.csv')
+fandango_films=fandango.set_index("FILM", drop=False, inplace=False)
+print(fandango.index)
+
+
+##4: Using A Custom Index For Selection
+# Slice using either bracket notation or loc[]
+fandango_films["Avengers: Age of Ultron (2015)":"Hot Tub Time Machine 2 (2015)"]
+fandango_films.loc["Avengers: Age of Ultron (2015)":"Hot Tub Time Machine 2 (2015)"]
+
+# Specific movie
+fandango_films.loc['Kumiko, The Treasure Hunter (2015)']
+
+# Selecting list of movies
+movies = ['Kumiko, The Treasure Hunter (2015)', 'Do You Believe? (2015)', 'Ant-Man (2015)']
+fandango_films.loc[movies]
+
+
+##5: Apply() Logic Over The Columns In A Dataframe
+  
+
+
+
 
