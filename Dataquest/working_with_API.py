@@ -110,3 +110,69 @@ json_data = response.json() #json_data est un dictionnaire
 print(type(json_data))
 print(json_data['number'])
 in_space_count = json_data['number']
+
+
+
+
+
+
+#################### API Authentication
+#We use GET requests to retrieve information from a server (hence the name GET)
+
+
+# Create a dictionary of headers containing our Authorization header.
+headers = {"Authorization": "token 1f36137fbbe1602f779300dad26e4c1b7fbab631"}
+
+# Make a GET request to the GitHub API with our headers.
+# This API endpoint will give us details about Vik Paruchuri.
+response = requests.get("https://api.github.com/users/VikParuchuri", headers=headers)
+
+
+
+##7: POST Requests
+#For example, we use POST requests to send information (instead of retrieve it), and to create objects on the API's server. 
+#With the GitHub API, we can use POST requests to create new repositories.
+
+
+payload = {"name": "test"}
+requests.post("https://api.github.com/user/repos", json=payload)
+#The code above will create a new repository named test under the account of the currently authenticated user. 
+#It will convert the payload dictionary to JSON, and pass it along with the POST request.
+#A successful POST request will usually return a 201 status code indicating that it was able to create the object on the server. 
+  #name -- Required, the name of the repository
+  #description -- Optional, the description of the repository
+
+payload = {"name": "test"}
+repo = {"name" : "learning-about-apis"}
+# We need to pass in our authentication headers!
+response = requests.post("https://api.github.com/user/repos", json=payload, headers=headers)
+print(response.status_code)
+
+
+##8: PUT/PATCH Requests
+#Sometimes we want to update an existing object, rather than create a new one. This is where PATCH and PUT requests come into play.
+
+  #We use PATCH requests when we want to change a few attributes of an object, but don't want to resend the entire object to the server. 
+  #Maybe we just want to change the name of our repository, for example.
+  #A successful PATCH request will usually return a 200 status code.
+
+  #We use PUT requests to send the complete object we're revising as a replacement for the server's existing version.
+
+payload = {"description": "The best repository ever!", "name": "test"}
+response = requests.patch("https://api.github.com/repos/VikParuchuri/test", json=payload)
+#The code above will change the description of the test repository to The best repository ever!
+#(we didn't specify a description when we created it).
+
+payload = {"description": "Learning about requests!", "name": "learning-about-apis"}
+response = requests.patch("https://api.github.com/repos/VikParuchuri/learning-about-apis", json=payload, headers=headers)
+status = response.status_code
+
+
+
+#9: DELETE Requests
+#A successful DELETE request will usually return a 204 status code indicating that it successfully deleted the object.
+
+response = requests.delete("https://api.github.com/repos/VikParuchuri/learning-about-apis", headers=headers)
+status = response.status_code
+
+
