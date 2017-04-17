@@ -93,4 +93,8 @@ plt.axvline(test_scores_negative.mean(), color="r")
 
 # Notice how the median is further to the right than the mean.
 # It's less sensitive to outliers, and isn't pulled to the left.
-plt.show()                                               
+plt.show()                                
+                                                
+ ##DROP NAN values to a DF
+ 
+new_titanic_survival = titanic_survival.dropna(subset=["age",'sex'])
