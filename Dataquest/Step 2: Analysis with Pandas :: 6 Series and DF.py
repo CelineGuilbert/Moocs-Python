@@ -161,7 +161,9 @@ print(rt_mt_means[0:5])
 
 
 
+##Delete NAN values to specific columns
 
+new_titanic_survival = titanic_survival.dropna(subset=["age",'sex'])
 
 
 
