@@ -98,3 +98,12 @@ plt.show()
  ##DROP NAN values to a DF
  
 new_titanic_survival = titanic_survival.dropna(subset=["age",'sex'])
+
+ 
+##recap
+mean_age = new_titanic_survival['age'].mean()
+median_age=new_titanic_survival['age'].median()
+
+from scipy.stats import skew,kurtosis
+skew_age=skew(new_titanic_survival['age'])
+kurtosis_age=kurtosis(new_titanic_survival['age'])
