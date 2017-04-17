@@ -24,6 +24,9 @@ female_savings_list = [savings[i] for i in range(0, len(gender)) if gender[i] ==
 
 male_savings = sum(male_savings_list) / len(male_savings_list)
 female_savings = sum(female_savings_list) / len(female_savings_list
+         
+                                                
+                                                
                                                 
 ## Histogramm
                                                 
@@ -65,7 +68,7 @@ kurt_meso=kurtosis(test_scores_meso)
  
                                                 
                                                 
- # We can do the same with the positive side.
+# We can do the same with the positive side.
 # Notice how the very high values pull the mean to the right more than we would expect.
 plt.hist(test_scores_positive)
 plt.axvline(test_scores_positive.mean())
@@ -74,6 +77,9 @@ mean_normal = test_scores_normal.mean()
 mean_negative = test_scores_negative.mean()
 mean_positive = test_scores_positive.mean()
    
+                                                
+                                                
+                                                
 ##MEDIAN
 # Let's plot the mean and median side-by-side in a negatively skewed distribution.
 # Unfortunately, arrays don't have a nice median method, so we have to use a numpy function to compute it.
@@ -94,8 +100,11 @@ plt.axvline(test_scores_negative.mean(), color="r")
 # Notice how the median is further to the right than the mean.
 # It's less sensitive to outliers, and isn't pulled to the left.
 plt.show()                                
+
                                                 
- ##DROP NAN values to a DF
+                                                
+                                                
+##DROP NAN values to a DF
  
 new_titanic_survival = titanic_survival.dropna(subset=["age",'sex'])
 
@@ -107,3 +116,71 @@ median_age=new_titanic_survival['age'].median()
 from scipy.stats import skew,kurtosis
 skew_age=skew(new_titanic_survival['age'])
 kurtosis_age=kurtosis(new_titanic_survival['age'])
+                            
+                                                
+                                                
+                                                
+                                                
+##Standard Deviation
+# Make a list of values
+values = [2, 4, 5, -1, 0, 10, 8, 9]
+# Compute the mean of the values
+values_mean = sum(values) / len(values)
+# Find the difference between each of the values and the mean by subtracting the mean from each value.
+differences = [i - values_mean for i in values]
+# This equals 0.  If you'd like, try changing the values around to verify that it still equals 0.
+print(sum(differences))
+
+# We can use the median function from numpy to find the median.
+# The median is the "middle" value in a set of values. If we sort the values in order, it's the one in the center (or the average of the two in the center if there are an even number of items in the set).
+# You'll see that the differences from the median don't always add up to 0.  You might want to play around with this and think about why that is.
+from numpy import median
+values_median = median(values)
+median_difference_sum = [i - values_median for i in values]                                               
+       
+                                                
+                                                
+                                                
+#compute Variance
+                                                
+import matplotlib.pyplot as plt
+import pandas as pd
+# We've already loaded the NBA data into the nba_stats variable.
+# Find the mean value of the column.
+pf_mean = nba_stats["pf"].mean()
+# Initialize variance at zero.
+variance = 0
+# Loop through each item in the "pf" column.
+for p in nba_stats["pf"]:
+    # Calculate the difference between the mean and the value.
+    difference = p - pf_mean
+    # Square the difference. This ensures that the result isn't negative.
+    # If we didn't square the difference, the total variance would be zero.
+    # ** in python means "raise whatever comes before this to the power of whatever number is after this."
+    square_difference = difference ** 2
+    # Add the difference to the total.
+    variance += square_difference
+# Average the total to find the final variance.
+variance = variance / len(nba_stats["pf"])
+
+ 
+                                                
+                                                
+                                                
+#ith a function
+                                               
+def std(var):
+    var_mean = var.mean()
+    variance=0
+    for i in var:
+        difference = i - var_mean
+        square_difference = difference ** 2
+        variance += square_difference
+    result=(variance / len(var)) ** (1/2)
+    return(result)
+
+mp_dev = std(nba_stats['mp'])
+ast_dev = std(nba_stats['ast'])
+                                                
+                                                
+                                                
