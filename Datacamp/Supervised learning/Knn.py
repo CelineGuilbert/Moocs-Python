@@ -11,5 +11,10 @@ knn =KNeighborsClassifier(n_neighbors=6)
 # Fit the classifier to the data
 knn.fit(X,y)
 
+#KNeighborsClassifier(algorithm='auto',
+#leaf_size=30, metric='minkowski', metric_params=None, n_jobs=1, n_neighbors=6,
+#p=2,  weights='uniform')
+
+
 
 
