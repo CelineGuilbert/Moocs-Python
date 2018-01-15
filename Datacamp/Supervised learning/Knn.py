@@ -15,6 +15,10 @@ knn.fit(X,y)
 #leaf_size=30, metric='minkowski', metric_params=None, n_jobs=1, n_neighbors=6,
 #p=2,  weights='uniform')
 
+# Predict the labels for the training data X
+y_pred = knn.predict(X)
 
+# Predict and print the label for the new data point X_new
+new_prediction = knn.predict(X_new)print("Prediction: {}".format(new_prediction))
 
 
