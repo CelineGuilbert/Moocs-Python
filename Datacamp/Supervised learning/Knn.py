@@ -26,6 +26,7 @@ knn.fit(X,y)
 y_pred = knn.predict(X)
 
 # Predict and print the label for the new data point X_new
-new_prediction = knn.predict(X_new)print("Prediction: {}".format(new_prediction))
+new_prediction = knn.predict(X_new)
+print("Prediction: {}".format(new_prediction))
 
 
