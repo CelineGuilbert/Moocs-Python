@@ -1,3 +1,10 @@
+● Basic idea: Predict the label of a data point by :
+  ● Looking at the ‘k’ closest labeled data points
+  ● Taking a majority vote
+
+
+
+
 # Import KNeighborsClassifier from sklearn.neighbors
 from sklearn.neighbors import KNeighborsClassifier
 
