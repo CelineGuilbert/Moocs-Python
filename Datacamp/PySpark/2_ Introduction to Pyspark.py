@@ -13,6 +13,9 @@ flights = flights.withColumn("duration_hrs",flights.air_time / 60 )
 #Updating a Spark DataFrame is somewhat different than working in pandas because the Spark DataFrame is immutable.
 #This means that it can't be changed, and so columns can't be updated in place.
 
+
+
+### Filtering Data
 # Filter flights with a SQL string
 long_flights1 = flights.filter("distance > 1000")
 
@@ -27,6 +30,8 @@ print(long_flights1.show())print(long_flights2.show())
 #These arguments can either be the column name as a string (one for each column) or a column object (using the df.colName syntax). 
 #When you pass a column object, you can perform operations like addition or subtraction on the column to change the data contained in it,
 
+
+### Selecting
 # Select the first set of columns
 selected1 = flights.select("tailnum", "origin", "dest")
 # Select the second set of columns
@@ -39,7 +44,6 @@ filterB = flights.dest == "PDX"
 selected2 = temp.filter(filterA).filter(filterB)
 
 
-
 # Define avg_speed
 avg_speed = (flights.distance/(flights.air_time/60)).alias("avg_speed")
 # Select the correct columns
@@ -48,13 +52,11 @@ speed1 = flights.select("origin", "dest", "tailnum", avg_speed)
 speed2 = flights.selectExpr("origin", "dest", "tailnum", "distance/(air_time/60) as avg_speed")
 
 
-
+### Aggregating
 # Find the shortest flight from PDX in terms of distance
 flights.filter(flights.origin=="PDX").groupBy().min("distance").show()
 # Find the longest flight from SEA in terms of duration
 flights.filter(flights.origin=="SEA").groupBy().max("air_time").show()
-
-
 
 # Average duration of Delta flights
 flights.filter(flights.carrier=="DL").filter(flights.origin=='SEA').groupBy().avg("air_time").show()
@@ -62,6 +64,8 @@ flights.filter(flights.carrier=="DL").filter(flights.origin=='SEA').groupBy().av
 flights.withColumn("duration_hrs", flights.air_time/60).groupBy().sum("duration_hrs").show()
 
 
+
+###Grouping and Aggregating 
 # Group by tailnum
 by_plane = flights.groupBy("tailnum")
 # Number of flights each plane made
@@ -70,3 +74,13 @@ by_plane.count().show()
 by_origin = flights.groupBy("origin")
 # Average duration of flights from PDX and SEA
 by_origin.avg("air_time").show()
+
+
+# Import pyspark.sql.functions as F
+import pyspark.sql.functions as F
+# Group by month and dest
+by_month_dest = flights.groupBy("month","dest")
+# Average departure delay by month and destination
+by_month_dest.avg('dep_delay').show()
+# Standard deviation
+by_month_dest.agg(F.stddev('dep_delay')).show()
