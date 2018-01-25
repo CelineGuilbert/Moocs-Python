@@ -84,3 +84,15 @@ by_month_dest = flights.groupBy("month","dest")
 by_month_dest.avg('dep_delay').show()
 # Standard deviation
 by_month_dest.agg(F.stddev('dep_delay')).show()
+
+
+
+### JOIN
+# Examine the data
+print(airports.show())
+# Rename the faa column
+airports = airports.withColumnRenamed('faa',"dest")
+# Join the DataFrames
+flights_with_airports = flights.join(airports, on="dest", how="leftouter")
+# Examine the data again
+print(flights_with_airports.show())
