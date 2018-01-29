@@ -87,6 +87,6 @@ cvscores_10 = cross_val_score(reg,X,y,cv=10)
 print(np.mean(cvscores_10))
 
 ##avoir les temps  %timeit cross_val_score(reg, X, y, cv = ____)
-#0.87
-#0.84
+#0.87 --> 11.5 ms
+#0.84 --> 37.3 ms
 
