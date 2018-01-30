@@ -13,3 +13,10 @@ y_pred = knn.predict(X_test)
 # Generate the confusion matrix and classification report
 print(confusion_matrix(y_test, y_pred))
 print(classification_report(y_test, y_pred))
+
+
+#PRECISION : TP / TP + FP [ Bien prédit / Prédit Spamé ]
+
+#RECALL : TP / TP + FN [ Bien prédit / En réalité Spamé ]
+
+#F1 score : 2 * ( (Precision * Recall) / (Precision + Recall))
