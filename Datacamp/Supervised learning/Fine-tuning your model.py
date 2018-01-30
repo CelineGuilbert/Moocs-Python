@@ -1,3 +1,5 @@
+## Metrics for classification : Confusion Matrix / K-nn
+
 # Import necessary modules
 from sklearn.metrics import classification_report, confusion_matrix
 # Create training and test set
@@ -9,4 +11,5 @@ knn.fit(X_train,y_train)
 # Predict the labels of the test data: y_pred
 y_pred = knn.predict(X_test)
 # Generate the confusion matrix and classification report
-print(confusion_matrix(y_test, y_pred))print(classification_report(y_test, y_pred))
+print(confusion_matrix(y_test, y_pred))
+print(classification_report(y_test, y_pred))
