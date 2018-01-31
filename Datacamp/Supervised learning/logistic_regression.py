@@ -16,3 +16,6 @@ y_pred = logreg.predict(X_test)
 # Compute and print the confusion matrix and classification report
 print(confusion_matrix(y_test, y_pred))
 print(classification_report(y_test, y_pred))
+
+##[[176  30] 
+## [ 35  67]]
