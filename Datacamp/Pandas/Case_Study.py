@@ -2,11 +2,12 @@
 DATA CLEANING 
 
 1) VARIABLES NUMERIQUES
-'''Conversion en numérique avec gestion des erreurs, remplacer par Nan
+Conversion en numérique avec gestion des erreurs, remplacer par Nan
+'''
 
 df_clean['wind_speed'] = pd.to_numeric(df_clean['wind_speed'], errors='coerce')
 
-
+'''
 2) DATE USES CASES
 
 Formater un string
@@ -49,6 +50,7 @@ overcast = df_clean.loc[df_clean['sky_condition'].str.contains('OVC')]
 1    49.795833
 2    49.900000
 Name: Temperature, dtype: float64
+'''
 
 # Compute the difference between the two arrays and print the mean difference
 difference = daily_temp_2011 - daily_temp_climate
