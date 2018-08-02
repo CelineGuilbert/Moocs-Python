@@ -30,6 +30,7 @@ print(df_clean.loc["2011-Apr":"2011-Jun", 'dry_bulb_faren'].median())
 
 
 ''' resample
+'''
 #When we have many values for a day : 
 # Downsample df_clean by day and aggregate by mean: daily_mean_2011
 daily_mean_2011 = df_clean.resample('D').mean()
